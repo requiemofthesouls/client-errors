@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package client_errors;
+
+option go_package = "github.com/requiemofthesouls/client-errors/pb/clienterrors;clienterrorspb";
+
+message ErrorDetails {
+  string msg = 1;
+  map<string, string> params = 3;
+  ValidationErrors validationErrors = 4;
+
+  message ValidationErrors {
+    repeated ValidationErrorItem items = 1;
+  }
+
+  message ValidationErrorItem {
+    string field = 1;
+    string msg = 2;
+  }
+}
